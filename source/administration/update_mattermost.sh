@@ -2,9 +2,9 @@
 
 ##Configuration - please adapt it to your environment
 #path to mattermost directory
-mattermostdir=/usr/mattermost2
+mattermostdir=/opt/mattermost
 #path for backup
-backupdir=/usr
+backupdir=/opt
 #temporary path for download
 downloaddir=/tmp
 #Team or Enterprise edition? Set 1 for team edition
