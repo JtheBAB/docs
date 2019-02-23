@@ -24,6 +24,8 @@ Existing install directory - *{install-path}*
   If that command does not produce any results because your version is older, try ``whereis platform`` instead.
 Location of your local storage directory
   The local storage directory contains all the files that users have attached to their messages. If you don't know its location, open the System Console and go to **Files > Storage** and read the value in **Local Storage Directory**. Relative paths are relative to the ``mattermost`` directory. For example, if the local storage directory is ``./data/`` then the absolute path is ``{install-path}/mattermost/data``.
+Owner and group of the install directory - *{owner}* and *{group}*
+  Use the ``ls -l {install-path}/mattermost/bin/mattermost`` command to get the owner and group.
 
 **To upgrade Mattermost Server**:
 
@@ -92,7 +94,7 @@ After the server is upgraded, users might need to refresh their browsers to expe
 
    .. code-block:: sh
 
-     cd /tmp
+     cd ~
 
 #. Download `the latest version of Mattermost Server <https://about.mattermost.com/download/>`__. In the following command, replace ``X.X.X`` with the version that you want to download:
 
@@ -155,18 +157,12 @@ After the server is upgraded, users might need to refresh their browsers to expe
    .. code-block:: sh
 
      sudo mv mattermost/plugins/ mattermost/plugins~
-     sudo mv mattermost/client/plugins/ mattermost/client/plugins~
     
 #. Change ownership of the new files before copying them.
 
    .. code-block:: sh
 
-     sudo chown -hR mattermost:mattermost /tmp/mattermost-upgrade/
-     
-   .. note::
-     If you didn't use ``mattermost`` as the owner and group of the install directory, run ``sudo chown -hR {owner}:{group} tmp/mattermost-upgrade/``.
-
-     If you're uncertain what owner or group was defined, use the ``ls -l {install-path}/mattermost/bin/mattermost`` command to obtain them.
+     sudo chown -hR {owner}:{group} {path-to}/mattermost-upgrade/
 
 #. Copy the new files to your install directory and remove the temporary files.
 
@@ -174,15 +170,8 @@ After the server is upgraded, users might need to refresh their browsers to expe
 
    .. code-block:: sh
 
-     sudo cp -an /tmp/mattermost-upgrade/. mattermost/
-     sudo rm -rf /tmp/mattermost-upgrade/
-
-#. If you have TLS set up on your Mattermost server, you must activate the CAP_NET_BIND_SERVICE capability to allow the new Mattermost binary to bind to low ports.
-
-   .. code-block:: sh
-
-     cd {install-path}/mattermost
-     sudo setcap cap_net_bind_service=+ep ./bin/mattermost
+     sudo cp -an {path-to}/mattermost-upgrade/. mattermost/
+     sudo rm -rf {path-to}/mattermost-upgrade/
 
 #. Start Mattermost server.
 
@@ -197,6 +186,13 @@ After the server is upgraded, users might need to refresh their browsers to expe
    .. code-block:: sh
 
      sudo systemctl start mattermost
+
+#. If you have TLS set up on your Mattermost server, you must activate the CAP_NET_BIND_SERVICE capability to allow the new Mattermost binary to bind to low ports.
+
+   .. code-block:: sh
+
+     cd {install-path}/mattermost
+     sudo setcap cap_net_bind_service=+ep ./bin/mattermost
 
 #. Upgrade your ``config.json`` schema:
 
@@ -214,7 +210,6 @@ After the server is upgraded, users might need to refresh their browsers to expe
 
       cd {install-path}/mattermost
       sudo mv plugins~/ plugins
-      sudo mv client/plugins~/ mattermost/client/plugins
 
 Upgrading Team Edition to Enterprise Edition
 --------------------------------------------

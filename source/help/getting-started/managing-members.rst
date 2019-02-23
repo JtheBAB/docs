@@ -48,7 +48,7 @@ If someone you want to add to your team already has an account on the server, yo
 User Roles
 ----------
 
-There are five types of user roles with different permission levels in Mattermost: System Admins, Team Admins, Channel Admins, Members, and Inactive accounts. To view a list of users on the team and what their roles are, Team Administrators can go to the three dot **Main Menu** and select **Manage Members**.
+There are four types of user roles with different permission levels in Mattermost: System Admins, Team Admins, Members, and Inactive accounts. To view a list of users on the team and what their roles are, Team Administrators can go to the three dot **Main Menu** and select **Manage Members**.
 
 Member
 ~~~~~~
@@ -89,8 +89,6 @@ The System Admin is typically a member of the IT staff and has all the privilege
 - Ability to promote and demote other users to and from the System Admin role
 - Ability to deactivate user accounts and to reactivate them
 - Access to private channels, but only if given the link to the private channel
-
-A System Admin can view and manage users in **System Console > Users**. They can search users by name, filter users by teams and filter to view other System Admins as well as inactive users.  
 
 User With Personal Access Token Permission
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

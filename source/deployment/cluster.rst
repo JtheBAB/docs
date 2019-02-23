@@ -196,8 +196,6 @@ Use the read replica feature to scale the database. The Mattermost server can be
 
 On large deployments, consider using the search replica feature to isolate search queries onto one or more database servers. A search replica is similar to a read replica, but is used only for handling search queries.
 
-If there are no search replicas, the server uses the read replicas instead. Similarly, if there are no read replicas, the server falls back to master.
-
 Sizing Databases
 ````````````````
 
@@ -276,7 +274,7 @@ Mattermost runs periodic tasks via the `job server <https://docs.mattermost.com/
  - Compliance exports
  - Elasticsearch indexing
 
-:doc:`Run all job servers <command-line-tools-mattermost-jobserver>` with ``--noschedule flag``, then set ``JobSettings.RunScheduler`` to ``true`` in config.json for all app servers in the cluster. The cluster leader will then be responsible for scheduling recurring jobs.
+Run all job servers with ``--noschedule flag``, then set ``JobSettings.RunScheduler`` to ``true`` in config.json for all app servers in the cluster. The cluster leader will then be responsible for scheduling recurring jobs.
 
 Upgrade Guide
 -------------
